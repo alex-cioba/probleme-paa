@@ -13,7 +13,7 @@ typedef struct arboreBinar
 }arbore;
 
 
-arbore* castigator(arbore* echipa1, arbore* echipa2)
+arbore* meci(arbore* echipa1, arbore* echipa2)
 {
     arbore* new = (arbore*)malloc(sizeof(arbore));
 
@@ -31,7 +31,7 @@ arbore* castigator(arbore* echipa1, arbore* echipa2)
     return new;
 }
 
-
+/*
 void traseu(arbore* castigator)
 {
     arbore* aux = castigator;
@@ -73,6 +73,31 @@ void traseu(arbore* castigator)
     free(adversari);
     printf("Castigatorul turneului: %d\n", aux->ID);
 }
+*/
+int traseuEchipa(arbore* nod, int ID, arbore** traseu, int nivel)
+{
+    if(nod == NULL)
+    {
+        return 0;
+    }
+
+    traseu[nivel] = nod;
+
+    if(nod->stanga == NULL && nod->ID == ID) //am gasit frunza cu echipa buna
+    {
+        return 1;
+    }
+
+    if(traseuEchipa(nod->stanga, ID, traseu, nivel+1) == 1)
+    {
+        return 1;
+    }
+
+    return traseuEchipa(nod->dreapta, ID, traseu, nivel+1);
+}
+
+
+
 
 int meciuriTotale(int echipe)
 {
@@ -120,13 +145,14 @@ arbore* desfasurareTurneu()
         rundaCurenta[i]->dreapta = NULL;
     }
 
+
     int runda=1;
     while(echipeRamase > 1)
     {
         printf("Runda %d\n", runda);
         for(int i=0; i<echipeRamase; i = i+2) //desfasurarea unei runde
         {
-            castigatori[i/2] = castigator(rundaCurenta[i], rundaCurenta[i+1]);
+            castigatori[i/2] = meci(rundaCurenta[i], rundaCurenta[i+1]);
             printf("%d vs %d | Castigator: %d\n", rundaCurenta[i]->ID, rundaCurenta[i+1]->ID, castigatori[i/2]->ID);
         }
 
@@ -147,10 +173,14 @@ int main()
 {
     srand(time(NULL));
     arbore* turneu = desfasurareTurneu();
-    printf("\nTraseu castigator:\n");
-    traseu(turneu);
-    printf("Numarul minim de meciuri necesare: %d\n", meciuriTotale(teams));
-    echipeEliminate(turneu);
+    //printf("\nTraseu castigator:\n");
+    //traseu(turneu);
+    //printf("Numarul minim de meciuri necesare: %d\n", meciuriTotale(teams));
+    //echipeEliminate(turneu);
 
+    int maxMeciuri = log2(teams);
+    arbore* traseu[maxMeciuri];
+    printf("\nTraseu echipa 25:\n");
+    traseuEchipa(turneu, 25, traseu, 0);
     return 0;
 }
