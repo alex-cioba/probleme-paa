@@ -59,6 +59,28 @@ void adauga_cuvant(Nod_t* radacina, char* cuvant)
 }
 
 
+void cel_mai_mare_cuvant(Nod_t* arbore, char* cuvant, int index)
+{
+    if(arbore == NULL)
+    {
+        return;
+    }
+
+    for(int i=25; i>=0; i--)
+    {
+        if(arbore->copii[i] != NULL)
+        {
+            cuvant[index] = i + 'a';
+            cel_mai_mare_cuvant(arbore->copii[i], cuvant, index+1);
+            return;
+        }
+    }
+
+    cuvant[index] = '\0';
+    printf("%s\n", cuvant);
+}
+
+
 void afisare(Nod_t* radacina, char* cuvant, int index)
 {
     if(radacina == NULL)
@@ -157,6 +179,8 @@ int main()
 
     printf("Inaltime arbore: %d\n", get_inaltime(arbore));
     printf("Nr. de pagini: %d\n", get_pagini(arbore));
+    printf("Cel mai mare cuvant in ordine lexicografica: ");
+    cel_mai_mare_cuvant(arbore, cuvant, 0);
 
     return 0;
 }
