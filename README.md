@@ -2,9 +2,9 @@ TO DO
 
 1. ARBORI
 - binari (DONE)
-- avl
+- avl [fac binar]
 - regasire (DONE)
-- B (DONE-ish-ish)
-- generalizati
+- B [fac binar]
+- generalizati (DONE-ish)
 
 2. GRAFURI (DONE-ish)
