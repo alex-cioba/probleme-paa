@@ -3,7 +3,7 @@ TO DO
 1. ARBORI
 - binari (DONE)
 - avl
-- regasire (DONE-ish)
+- regasire (DONE)
 - B
 - generalizati
 
