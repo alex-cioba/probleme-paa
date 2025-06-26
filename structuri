@@ -32,3 +32,17 @@ struct Nod
 adaugare cuvant: se merge pe noduri cu indicele literei pana la ultima litera, pt literele care nu exista se creeaza nod
 afisare(nod, cuvant, index): se merge pe toti copiii care exista si se adauga in buffer. La sfarsit de cuvant printf buffer SI se continua functia
 inaltime / nr pagini / etc: afisare adaptata
+
+
+GRAF
+struct graf
+{
+  int nr_noduri;
+  int matrice[][];
+}
+
+adaugare: matrice[i][j] = 1 (sau cost) --> exista drum i - j, 0 --> nu exista
+dfs: printf + vizitat, apoi recursiv cartierele nevizitate de pe randul acesta, cu for  <-- pt graf conex
+mst (aka cel mai ieftin graf):
+  cost[i] = cel mai mic cost la acest moment pt conectarea lui i cu graful nou || vizitat = nodurile vizitate || parinte[i] = j  <-- graful nou are drum i-j
+  pt fiecare cartier (coloana matricei) caut cel mai ieftin nod nevizitat (de pe linie), actualizez costurile pt vecinii lui si il adaug in graf (parinte)
