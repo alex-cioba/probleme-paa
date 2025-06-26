@@ -5,7 +5,7 @@
 typedef struct Nod
 {
     struct Nod* copii[26]; // a-z
-    int sfarsit; // 0 - da, 1 - nu
+    int sfarsit; // 0 - nu, 1 - da
 }Nod_t;
 
 
