@@ -4,7 +4,7 @@ TO DO
 - binari (DONE)
 - avl
 - regasire (DONE)
-- B
+- B (DONE-ish-ish)
 - generalizati
 
 2. GRAFURI (DONE-ish)
