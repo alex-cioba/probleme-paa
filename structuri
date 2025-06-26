@@ -1,0 +1,34 @@
+BINAR
+
+struct Nod
+{
+  int cheie;
+  struct Nod* stanga;
+  struct Nod* dreapta;
+}
+adaugare: stanga/dreapta in functie de cheie, nod->st/dr = adaugare(nod->st/dr). CAZ de baza nod == NULL --> return nod(cheie)
+afisare: pre/in/post ordine (SD si R)
+int inaltime: recursiv. caz de baza return 0; int st/dr = inaltime(nod->st/dr); return st/dr + 1 (care e mai mare)
+
+
+GENERALIZAT
+
+struct Nod
+{
+  int cheie;
+  struct Nod** copii;  <--vector de noduri cu copiii nodului curent
+  int nr_copii; <-- contor
+}
+
+
+REGASIRE
+
+struct Nod
+{
+  struct Nod copii[26];  <-- 26 pt litere a-z, ala e nr. de caractere posibile
+  int final;  <-- kind of bool daca e sfarsit de cuvant la nodul asta
+}
+
+adaugare cuvant: se merge pe noduri cu indicele literei pana la ultima litera, pt literele care nu exista se creeaza nod
+afisare(nod, cuvant, index): se merge pe toti copiii care exista si se adauga in buffer. La sfarsit de cuvant printf buffer SI se continua functia
+inaltime / nr pagini / etc: afisare adaptata
